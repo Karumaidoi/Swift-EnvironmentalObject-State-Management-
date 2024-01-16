@@ -17,7 +17,7 @@ class HomeObservableObject: ObservableObject {
     }
     
     func getData() {
-        dataArray.append(contentsOf: ["iPhone", "iPad", "iMac"]);
+        dataArray.append(contentsOf: ["Alex Maina", "Daniel Gakeri", "Dennis Gachie"]);
     }
     
     // Create a function to delete data
@@ -34,12 +34,11 @@ struct HomeView: View {
     @State private var searchText: String = "";
     @State private var showSheet: Bool = false;
     
-    let names: [String] = ["Alex Maina", "Daniel Gakeri", "Dennis Gachie"];
     
     var body: some View {
         NavigationView {
             List {
-                ForEach(names, id: \.self) {item in
+                ForEach(viewModel.dataArray, id: \.self) {item in
                     NavigationLink(destination: DestinationPage()) {
                         HStack(spacing: 10) {
                             Circle()
@@ -47,7 +46,7 @@ struct HomeView: View {
                                 .frame(width: 50, height: 50)
                             
                             VStack(alignment: .leading) {
-                                Text(names.randomElement()!)
+                                Text(item)
                                     .font(.body)
                                 
                                 Text("Zae!. Sai ni late huwezi shuka kesho?")
